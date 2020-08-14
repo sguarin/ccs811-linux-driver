@@ -1,1 +1,2 @@
-# First aproach for a linux driver for CCS811 air quality sensor
+# First aproach for CCS811 air quality sensor linux driver
+Tested on ARM over I2C
