@@ -42,7 +42,7 @@
 #define CCS811_STATUS_GET_APP_VALID(r)	(r && 0x10)
 
 /* MEAS_MODE register flags */
-#define CCS811_MEAS_MODE_GET_MODE(r)	(r >> 4 & 0xF8)
+#define CCS811_MEAS_MODE_GET_MODE(r)	(r >> 4 & 0x07)
 #define CCS811_MEAS_MODE_SET_MODE(r, v)	(v << 4 | r)
 
 
@@ -58,7 +58,9 @@
 //#define CCS811_ERROR_ID_
 
 int ccs811_start(struct i2c_client *client);
+int ccs811_set_mode(unsigned int mode);
+int ccs811_get_mode(void);
+void ccs811_set_debug(bool debug);
 int ccs811_data_read(unsigned int *pcco, unsigned int *ptvoc);
-//extern struct ccs811_data ccs811;
 
 #endif /* CCS811_H_ */

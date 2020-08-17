@@ -1,8 +1,9 @@
 # First aproach for CCS811 air quality sensor linux driver
 Tested on ARM over I2C
 
-## Device tree example for Beaglebone
-
+## Device tree example
+The following is an example for device tree changes to a beagle bone one.
+arch/arm/boot/dts/am335x-bone-common.dtsi
 ```
 
 &am33xx_pinmux {
@@ -33,3 +34,4 @@ Tested on ARM over I2C
 
 ...
 ```
+You will need to adapt youasr acordingly.
