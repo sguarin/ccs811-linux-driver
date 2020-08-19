@@ -53,20 +53,6 @@ static long ccs811_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	return 0;
 }
 
-static ssize_t ccs811_write(struct file *file, const char __user *ubuf, size_t len, loff_t *offset)  {
-	int test = 0;
-	char kbuf[30];
-
-	memset(kbuf, '\0', (size_t)30);
-
-	if (copy_from_user(&kbuf, ubuf, len)) {
-		return -EFAULT;
-	}
-
-	pr_info("my_dev_write() fue invocada test=%d.", test);
-	return 0;
-}
-
 static ssize_t ccs811_read(struct file *filep, char __user *buffer, size_t len, loff_t *offset)  {
 	char output[32];
 	size_t output_size;
@@ -119,10 +105,11 @@ static int ccs811_probe(struct i2c_client *client, const struct i2c_device_id *i
 		return ret;
 	}
 
+
+	ccs811_set_debug(debug);
 	ret = ccs811_start(client);
-	if (debug)
-		ccs811_set_debug(true);
-	if (!ret && debug)
+
+	if (!ret)
 		pr_info("driver started succesfully\n");
 
 	return 0;
@@ -132,7 +119,7 @@ static int ccs811_remove(struct i2c_client *client)  {
 
 	/* Unregister del miscDevice del kernel */
 	misc_deregister(&ccs811_miscdevice);
-	//ccs811_end();
+	//ccs811_end(); TODO
 	return 0;
 }
 

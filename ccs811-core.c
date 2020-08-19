@@ -135,7 +135,7 @@ int ccs811_start(struct i2c_client *client) {
 	unsigned val;
 
 	ccs811.client = client;
-	ccs811.debug = false;
+	//ccs811.debug = false;
 
 	val = 0;
 	ret = ccs811_soft_reset(&ccs811);
@@ -162,11 +162,9 @@ int ccs811_start(struct i2c_client *client) {
 		return -EINVAL;
 	}
 	if (CCS811_STATUS_GET_ERROR(val)) {
-		if (ccs811.debug)
-			pr_warn("status error: previous error detected\n");
+		pr_warn("status error: previous error detected\n");
 		ret = ccs811_reg_read(&ccs811, CCS811_REG_ERROR_ID, &val);
-		if (ccs811.debug)
-			pr_warn("read error id: returns=%d value=%x\n", ret, val);
+		pr_warn("read error id: returns=%d value=%x\n", ret, val);
 	}
 
 	ret = ccs811_reg_read(&ccs811, CCS811_REG_FW_BOOT_VERSION, &val);
