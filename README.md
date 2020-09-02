@@ -2,7 +2,7 @@
 Tested on ARM over I2C
 
 ## Device tree example
-The following is an example for device tree changes to a beagle bone one.
+The following is an example for device tree changes to a beagle bone board.
 arch/arm/boot/dts/am335x-bone-common.dtsi
 ```
 
@@ -34,4 +34,4 @@ arch/arm/boot/dts/am335x-bone-common.dtsi
 
 ...
 ```
-You will need to adapt youasr acordingly.
+You will need to adapt yours acordingly.
